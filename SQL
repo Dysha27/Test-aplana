@@ -1,0 +1,5 @@
+UPDATE t_Car SET color = 'Red' WHERE number = 001 AND model = 'BMW' AND id_owner = (SELECT id FROM t_Owner WHERE FIO = 'Пупкин Иван Петрович' AND id_city = (SELECT id FROM t_Cities WHERE city = 'СПб'))
+IF @@ROWCOUNT=0
+INSERT INTO t_Car (number, mark, model, color, id_owner)
+SELECT 001, 'some mark', 'BMW', 'Red', id
+FROM t_Owner WHERE FIO = 'Пупкин Иван Петрович' AND id_city = (SELECT id FROM t_Cities WHERE city = 'СПб')
