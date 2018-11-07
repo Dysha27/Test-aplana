@@ -3,3 +3,14 @@ IF @@ROWCOUNT=0
 INSERT INTO t_Car (number, mark, model, color, id_owner)
 SELECT 001, 'some mark', 'BMW', 'Red', id
 FROM t_Owner WHERE FIO = 'Пупкин Иван Петрович' AND id_city = (SELECT id FROM t_Cities WHERE city = 'СПб')
+
+CREATE PROCEDURE return_test 
+LANGUAGE SQL 
+BEGIN 
+SELECT ROUND((RAND()* 100),0) AS Number 
+IF Number < 50 THEN 
+RETURN 0; 
+ELSE 
+RETURN 1; 
+END IF; 
+END
